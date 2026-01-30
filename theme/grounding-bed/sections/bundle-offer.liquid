@@ -11,7 +11,8 @@
 
       {% if section.settings.perks != blank %}
         <ul class="bundle-offer__perks">
-          {% for line in section.settings.perks | split: '\n' %}
+          {% assign perks_lines = section.settings.perks | split: '\n' %}
+          {% for line in perks_lines %}
             {% assign t = line | strip %}
             {% if t != blank %}<li>{{ t }}</li>{% endif %}
           {% endfor %}

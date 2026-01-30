@@ -50,7 +50,7 @@
       <div class="hero-sleep__cta">
         {% if section.settings.product != blank %}
           {%- assign product = section.settings.product -%}
-          <form method="post" action="/cart/add" class="hero-sleep__form" data-type="add-to-cart-form">
+          <form method="post" action="{{ routes.cart_add_url }}" class="hero-sleep__form" data-type="add-to-cart-form">
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
             <button type="submit" class="button button--primary hero-sleep__button" {% unless product.available %}disabled{% endunless %}>
               {{ section.settings.cta_label | default: 'Get Better Sleep Tonight' | escape }}

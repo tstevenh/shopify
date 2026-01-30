@@ -1,0 +1,208 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "enable_sticky_info": true,
+        "gallery_layout": "stacked",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 24,
+        "padding_bottom": 12
+      }
+    },
+    "guarantee": {
+      "type": "guarantee-bar",
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": { "title": "90-night guarantee", "text": "Risk-free trial" }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": { "title": "Free shipping", "text": "Orders over $100" }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": { "title": "Secure checkout", "text": "Shopify Payments" }
+        }
+      },
+      "block_order": ["item_1", "item_2", "item_3"],
+      "settings": {
+        "color_scheme": "accent-1"
+      }
+    },
+    "hero": {
+      "type": "hero-sleep",
+      "settings": {
+        "color_scheme": "background-1",
+        "kicker": "90-Night Money Back Guarantee",
+        "heading": "<p>Grounded sleep for deeper rest &amp; faster recovery</p>",
+        "subheading": "<p>Connect to the Earth’s natural energy overnight — reduce tension, wake up refreshed, and feel better every morning.</p>",
+        "bullets": "Sleep deeper\nWake up with less discomfort\nEasy setup in minutes",
+        "cta_label": "Get Better Sleep Tonight",
+        "microcopy": "Free shipping over $100 • 90-night risk-free",
+        "trust_badges": "Backed by science\nPremium materials\nSecure checkout"
+      }
+    },
+    "pain_points": {
+      "type": "pain-points",
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "Waking up sore",
+            "text": "<p>Stiff back, aching legs, tight shoulders — even after 8 hours in bed.</p>"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "Restless nights",
+            "text": "<p>Tossing and turning, waking up multiple times, never fully recovering.</p>"
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "title": "Low energy",
+            "text": "<p>Dragging through mornings and relying on caffeine just to function.</p>"
+          }
+        }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "color_scheme": "background-1",
+        "heading": "If you’re not sleeping well, your whole day pays for it",
+        "subheading": "<p>Most people don’t realize how much stress, tension, and inflammation build up overnight — until they finally sleep deeply again.</p>"
+      }
+    },
+    "mechanism": {
+      "type": "feature-mechanism",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Place the sheet",
+            "text": "<p>Put the grounding sheet on your mattress like normal bedding.</p>"
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Connect the cord",
+            "text": "<p>Attach the grounding cord to the sheet port.</p>"
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Plug into ground",
+            "text": "<p>Plug into the outlet ground port (non-electrical). Then sleep.</p>"
+          }
+        }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {
+        "color_scheme": "background-2",
+        "heading": "How grounding sheets work",
+        "body": "<p>Grounding connects your body to the Earth’s natural electrons — helping calm the nervous system and support recovery while you sleep.</p>",
+        "steps_title": "Simple 3-step setup"
+      }
+    },
+    "benefits": {
+      "type": "benefits-grid",
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "title": "Deeper sleep", "text": "<p>Fall asleep faster and stay asleep longer.</p>" } },
+        "b2": { "type": "benefit", "settings": { "title": "Less tension", "text": "<p>Wake up with a looser neck, shoulders, and back.</p>" } },
+        "b3": { "type": "benefit", "settings": { "title": "Better recovery", "text": "<p>Support your body’s natural overnight repair.</p>" } },
+        "b4": { "type": "benefit", "settings": { "title": "Calmer mornings", "text": "<p>Feel more grounded and less stressed.</p>" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": {
+        "color_scheme": "background-1",
+        "heading": "What you’ll notice"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials-wall",
+      "blocks": {
+        "t1": { "type": "testimonial", "settings": { "stars": 5, "quote": "<p>Immediate &amp; impactful results — we slept deeper and woke up less.</p>", "name": "Debra C.", "detail": "Verified buyer" } },
+        "t2": { "type": "testimonial", "settings": { "stars": 5, "quote": "<p>Absolute game changer. I wake up energized and with less discomfort.</p>", "name": "Rosie P.", "detail": "Verified buyer" } },
+        "t3": { "type": "testimonial", "settings": { "stars": 5, "quote": "<p>From the first night, the difference was amazing.</p>", "name": "Sarah", "detail": "Verified buyer" } }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {
+        "color_scheme": "background-2",
+        "heading": "Real people. Real sleep."
+      }
+    },
+    "bundle": {
+      "type": "bundle-offer",
+      "settings": {
+        "color_scheme": "background-1",
+        "heading": "Bundle & save",
+        "body": "<p>Get a second set for travel, gifting, or rotation — and save more per set.</p>",
+        "perks": "Better value per set\nGreat for couples\nPerfect for gifting",
+        "cta_label": "Shop bundles",
+        "note": "Limited-time offer (while supplies last)."
+      }
+    },
+    "compare": {
+      "type": "comparison-table",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "label": "Designed for grounding", "us": true, "others": false } },
+        "r2": { "type": "row", "settings": { "label": "Easy 3-step setup", "us": true, "others": false } },
+        "r3": { "type": "row", "settings": { "label": "Supports deeper sleep", "us": true, "others": false } },
+        "r4": { "type": "row", "settings": { "label": "Premium breathable cotton", "us": true, "others": true } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4"],
+      "settings": {
+        "color_scheme": "background-2",
+        "heading": "Why this is different",
+        "left_heading": "Feature",
+        "middle_heading": "Our grounding sheet",
+        "right_heading": "Regular bedding",
+        "note": "Comparison is illustrative and based on typical products."
+      }
+    },
+    "faq": {
+      "type": "faq-sleep",
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "question": "Is the outlet connection safe?", "answer": "<p>Yes. It connects only to the grounding port (non-electrical). No electricity flows to the sheet.</p>" } },
+        "q2": { "type": "qa", "settings": { "question": "Can I wash it like normal bedding?", "answer": "<p>Yes—use a gentle cycle with mild detergent. For longevity, air dry when possible.</p>" } },
+        "q3": { "type": "qa", "settings": { "question": "How long does it last?", "answer": "<p>With proper care, it can last like regular bed sheets.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3"],
+      "settings": {
+        "color_scheme": "background-1",
+        "heading": "Frequently asked questions",
+        "note": "<p>Questions? We’re here to help.</p>"
+      }
+    },
+    "sticky": {
+      "type": "sticky-cta",
+      "settings": {
+        "color_scheme": "background-1",
+        "title": "Grounding Bed Sheet",
+        "subtitle": "90-night risk-free",
+        "cta_label": "Add to cart"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "guarantee",
+    "hero",
+    "pain_points",
+    "mechanism",
+    "benefits",
+    "testimonials",
+    "bundle",
+    "compare",
+    "faq",
+    "sticky"
+  ]
+}
