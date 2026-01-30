@@ -1,0 +1,49 @@
+{% comment %}
+  GUARANTEE BAR
+  A reassurance strip (refund, shipping, support).
+{% endcomment %}
+
+<section class="guarantee-bar color-{{ section.settings.color_scheme }}">
+  <div class="page-width guarantee-bar__wrap">
+    <div class="guarantee-bar__items">
+      {% for block in section.blocks %}
+        <div class="guarantee-bar__item" {{ block.shopify_attributes }}>
+          <strong>{{ block.settings.title | escape }}</strong>
+          {% if block.settings.text != blank %}
+            <span>{{ block.settings.text | escape }}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Guarantee bar",
+  "settings": [
+    {"type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "accent-1"}
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {"type": "text", "id": "title", "label": "Title", "default": "90-night guarantee"},
+        {"type": "text", "id": "text", "label": "Text", "default": "Risk-free trial"}
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Guarantee bar",
+      "blocks": [
+        {"type": "item", "settings": {"title": "90-night guarantee", "text": "Risk-free trial"}},
+        {"type": "item", "settings": {"title": "Free shipping", "text": "Orders over $100"}},
+        {"type": "item", "settings": {"title": "Secure checkout", "text": "Shopify Payments"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

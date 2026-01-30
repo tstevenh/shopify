@@ -1,0 +1,159 @@
+{% comment %}
+  HERO - SLEEP LANDING
+  High conversion hero section for a single-product landing page.
+
+  Notes:
+  - Uses product block optional for ATC.
+  - Keep copy short; focus on outcome + proof + CTA.
+{% endcomment %}
+
+<section class="hero-sleep color-{{ section.settings.color_scheme }}">
+  <div class="page-width hero-sleep__wrap">
+    <div class="hero-sleep__media">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1400 | image_tag:
+          loading: 'eager',
+          sizes: '(min-width: 990px) 50vw, 100vw',
+          widths: '375, 550, 750, 990, 1200, 1400',
+          alt: section.settings.image.alt | escape
+        }}
+      {% else %}
+        <div class="hero-sleep__placeholder"></div>
+      {% endif %}
+    </div>
+
+    <div class="hero-sleep__content">
+      {% if section.settings.kicker != blank %}
+        <p class="hero-sleep__kicker">{{ section.settings.kicker | escape }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="hero-sleep__heading">{{ section.settings.heading }}</h1>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <div class="hero-sleep__subheading rte">{{ section.settings.subheading }}</div>
+      {% endif %}
+
+      {% if section.settings.bullets != blank %}
+        <ul class="hero-sleep__bullets">
+          {% assign lines = section.settings.bullets | split: '\n' %}
+          {% for line in lines %}
+            {% assign t = line | strip %}
+            {% if t != blank %}
+              <li>{{ t }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <div class="hero-sleep__cta">
+        {% if section.settings.product != blank %}
+          {%- assign product = section.settings.product -%}
+          <form method="post" action="/cart/add" class="hero-sleep__form" data-type="add-to-cart-form">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <button type="submit" class="button button--primary hero-sleep__button" {% unless product.available %}disabled{% endunless %}>
+              {{ section.settings.cta_label | default: 'Get Better Sleep Tonight' | escape }}
+            </button>
+          </form>
+          {% if section.settings.microcopy != blank %}
+            <p class="hero-sleep__microcopy">{{ section.settings.microcopy | escape }}</p>
+          {% endif %}
+        {% else %}
+          <a class="button button--primary hero-sleep__button" href="{{ section.settings.cta_link }}">
+            {{ section.settings.cta_label | default: 'Shop Now' | escape }}
+          </a>
+          {% if section.settings.microcopy != blank %}
+            <p class="hero-sleep__microcopy">{{ section.settings.microcopy | escape }}</p>
+          {% endif %}
+        {% endif %}
+
+        {% if section.settings.trust_badges != blank %}
+          <div class="hero-sleep__trust">
+            {% assign badges = section.settings.trust_badges | split: '\n' %}
+            {% for b in badges %}
+              {% assign bt = b | strip %}
+              {% if bt != blank %}
+                <span class="hero-sleep__badge">{{ bt }}</span>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero (Sleep)",
+  "tag": "section",
+  "class": "section-hero-sleep",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "90-Night Money Back Guarantee"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Grounded sleep for deeper rest & faster recovery</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Connect to the Earth’s natural energy overnight — reduce tension, wake up refreshed, and feel better every morning.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "bullets",
+      "label": "Bullets (one per line)",
+      "default": "Sleep deeper\nWake up with less discomfort\nEasy setup in minutes"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product (optional for Add to Cart)"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Get Better Sleep Tonight"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link (used if no product selected)"
+    },
+    {
+      "type": "text",
+      "id": "microcopy",
+      "label": "Microcopy",
+      "default": "Free shipping over $100 • 90-night risk-free"
+    },
+    {
+      "type": "textarea",
+      "id": "trust_badges",
+      "label": "Trust badges (one per line)",
+      "default": "Backed by science\nPremium materials\nSecure checkout"
+    }
+  ],
+  "presets": [{"name": "Hero (Sleep)"}]
+}
+{% endschema %}

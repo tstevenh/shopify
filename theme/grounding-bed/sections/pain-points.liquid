@@ -1,0 +1,57 @@
+{% comment %}
+  PAIN POINTS
+  Agitate the problems; keep it empathetic and specific.
+{% endcomment %}
+
+<section class="pain-points color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="title">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <div class="rte">{{ section.settings.subheading }}</div>
+    {% endif %}
+
+    <div class="pain-points__grid">
+      {% for block in section.blocks %}
+        <div class="pain-points__card" {{ block.shopify_attributes }}>
+          <h3 class="pain-points__title">{{ block.settings.title | escape }}</h3>
+          <p class="pain-points__text">{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pain points",
+  "settings": [
+    {"type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "background-1"},
+    {"type": "text", "id": "heading", "label": "Heading", "default": "If you’re not sleeping well, your whole day pays for it"},
+    {"type": "richtext", "id": "subheading", "label": "Subheading", "default": "<p>Most people don’t realize how much stress, tension, and inflammation build up overnight — until they finally sleep deeply again.</p>"}
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        {"type": "text", "id": "title", "label": "Title", "default": "Waking up sore"},
+        {"type": "richtext", "id": "text", "label": "Text", "default": "<p>Stiff back, aching legs, tight shoulders — even after 8 hours in bed.</p>"}
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Pain points",
+      "blocks": [
+        {"type": "point", "settings": {"title": "Waking up sore", "text": "<p>Stiff back, aching legs, tight shoulders — even after 8 hours in bed.</p>"}},
+        {"type": "point", "settings": {"title": "Restless nights", "text": "<p>Tossing and turning, waking up multiple times, never fully recovering.</p>"}},
+        {"type": "point", "settings": {"title": "Low energy", "text": "<p>Dragging through mornings and relying on caffeine just to function.</p>"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

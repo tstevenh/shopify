@@ -1,0 +1,79 @@
+{% comment %}
+  FEATURE / MECHANISM
+  Explain how it works in simple steps. Pair "science" + "natural".
+{% endcomment %}
+
+<section class="feature-mechanism color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="feature-mechanism__grid">
+      <div>
+        {% if section.settings.heading != blank %}
+          <h2 class="title">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.body != blank %}
+          <div class="rte">{{ section.settings.body }}</div>
+        {% endif %}
+
+        {% if section.settings.steps_title != blank %}
+          <h3 class="feature-mechanism__steps-title">{{ section.settings.steps_title | escape }}</h3>
+        {% endif %}
+
+        <ol class="feature-mechanism__steps">
+          {% for block in section.blocks %}
+            <li class="feature-mechanism__step" {{ block.shopify_attributes }}>
+              <strong>{{ block.settings.title | escape }}</strong>
+              <div class="rte">{{ block.settings.text }}</div>
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+
+      <div class="feature-mechanism__media">
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 1200 | image_tag:
+            loading: 'lazy',
+            sizes: '(min-width: 990px) 45vw, 100vw',
+            widths: '375, 550, 750, 990, 1200',
+            alt: section.settings.image.alt | escape
+          }}
+        {% else %}
+          <div class="feature-mechanism__placeholder"></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature mechanism",
+  "settings": [
+    {"type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "background-2"},
+    {"type": "text", "id": "heading", "label": "Heading", "default": "How grounding sheets work"},
+    {"type": "richtext", "id": "body", "label": "Body", "default": "<p>Grounding connects your body to the Earth’s natural electrons — helping calm the nervous system and support recovery while you sleep.</p>"},
+    {"type": "text", "id": "steps_title", "label": "Steps title", "default": "Simple 3-step setup"},
+    {"type": "image_picker", "id": "image", "label": "Image"}
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {"type": "text", "id": "title", "label": "Title", "default": "Place the sheet"},
+        {"type": "richtext", "id": "text", "label": "Text", "default": "<p>Put the grounding sheet on your mattress like normal bedding.</p>"}
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Feature mechanism",
+      "blocks": [
+        {"type": "step", "settings": {"title": "Place the sheet", "text": "<p>Put the grounding sheet on your mattress like normal bedding.</p>"}},
+        {"type": "step", "settings": {"title": "Connect the cord", "text": "<p>Attach the grounding cord to the sheet port.</p>"}},
+        {"type": "step", "settings": {"title": "Plug into ground", "text": "<p>Plug into the outlet ground port (non-electrical). Then sleep.</p>"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

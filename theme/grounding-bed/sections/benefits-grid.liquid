@@ -1,0 +1,57 @@
+{% comment %}
+  BENEFITS GRID
+  3–6 outcome-driven benefits.
+{% endcomment %}
+
+<section class="benefits-grid color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="title">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="benefits-grid__grid">
+      {% for block in section.blocks %}
+        <div class="benefits-grid__item" {{ block.shopify_attributes }}>
+          {% if block.settings.icon != blank %}
+            <div class="benefits-grid__icon">{{ block.settings.icon }}</div>
+          {% endif %}
+          <h3 class="benefits-grid__title">{{ block.settings.title | escape }}</h3>
+          <div class="rte benefits-grid__text">{{ block.settings.text }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Benefits grid",
+  "settings": [
+    {"type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "background-1"},
+    {"type": "text", "id": "heading", "label": "Heading", "default": "What you’ll notice"}
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {"type": "html", "id": "icon", "label": "Icon (SVG/HTML)", "default": ""},
+        {"type": "text", "id": "title", "label": "Title", "default": "Deeper sleep"},
+        {"type": "richtext", "id": "text", "label": "Text", "default": "<p>Fall asleep faster and stay asleep longer.</p>"}
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Benefits grid",
+      "blocks": [
+        {"type": "benefit", "settings": {"title": "Deeper sleep", "text": "<p>Fall asleep faster and stay asleep longer.</p>"}},
+        {"type": "benefit", "settings": {"title": "Less tension", "text": "<p>Wake up with a looser neck, shoulders, and back.</p>"}},
+        {"type": "benefit", "settings": {"title": "Better recovery", "text": "<p>Support your body’s natural overnight repair.</p>"}},
+        {"type": "benefit", "settings": {"title": "Calmer mornings", "text": "<p>Feel more grounded and less stressed.</p>"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

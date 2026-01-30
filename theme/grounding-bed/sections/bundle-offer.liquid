@@ -1,0 +1,47 @@
+{% comment %}
+  BUNDLE OFFER
+  For upsells / quantity breaks. For now, simple messaging + optional link.
+{% endcomment %}
+
+<section class="bundle-offer color-{{ section.settings.color_scheme }}">
+  <div class="page-width bundle-offer__wrap">
+    <div>
+      <h2 class="title">{{ section.settings.heading }}</h2>
+      <div class="rte">{{ section.settings.body }}</div>
+
+      {% if section.settings.perks != blank %}
+        <ul class="bundle-offer__perks">
+          {% for line in section.settings.perks | split: '\n' %}
+            {% assign t = line | strip %}
+            {% if t != blank %}<li>{{ t }}</li>{% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div class="bundle-offer__cta">
+      {% if section.settings.cta_link != blank %}
+        <a class="button button--primary" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label | escape }}</a>
+      {% endif %}
+      {% if section.settings.note != blank %}
+        <p class="bundle-offer__note">{{ section.settings.note | escape }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bundle offer",
+  "settings": [
+    {"type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "background-1"},
+    {"type": "text", "id": "heading", "label": "Heading", "default": "Bundle & save"},
+    {"type": "richtext", "id": "body", "label": "Body", "default": "<p>Get a second set for travel, gifting, or rotation — and save more per set.</p>"},
+    {"type": "textarea", "id": "perks", "label": "Perks (one per line)", "default": "Better value per set\nFaster setup for couples\nGreat for gifting"},
+    {"type": "text", "id": "cta_label", "label": "CTA label", "default": "Shop bundles"},
+    {"type": "url", "id": "cta_link", "label": "CTA link"},
+    {"type": "text", "id": "note", "label": "Note", "default": "Limited-time offer (while supplies last)."}
+  ],
+  "presets": [{"name": "Bundle offer"}]
+}
+{% endschema %}

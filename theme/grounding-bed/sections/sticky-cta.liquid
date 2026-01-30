@@ -1,0 +1,59 @@
+{% comment %}
+  STICKY CTA (simple)
+  Shows a sticky bar with CTA button (best for mobile).
+
+  Note: Dawn already has sticky ATC patterns in some templates;
+  this is a lightweight custom section that can be added to product/landing.
+{% endcomment %}
+
+<section class="sticky-cta" data-sticky-cta>
+  <div class="sticky-cta__inner color-{{ section.settings.color_scheme }}">
+    <div class="sticky-cta__left">
+      {% if section.settings.title != blank %}
+        <span class="sticky-cta__title">{{ section.settings.title | escape }}</span>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <span class="sticky-cta__subtitle">{{ section.settings.subtitle | escape }}</span>
+      {% endif %}
+    </div>
+
+    <div class="sticky-cta__right">
+      {% if section.settings.product != blank %}
+        {%- assign product = section.settings.product -%}
+        <form method="post" action="/cart/add" class="sticky-cta__form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button class="button button--primary" type="submit" {% unless product.available %}disabled{% endunless %}>
+            {{ section.settings.cta_label | escape }}
+          </button>
+        </form>
+      {% else %}
+        <a class="button button--primary" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label | escape }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sticky-cta { position: sticky; bottom: 0; z-index: 30; }
+  .sticky-cta__inner { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 10px 16px; border-top: 1px solid rgba(0,0,0,.08); }
+  .sticky-cta__title { font-weight: 700; display: block; }
+  .sticky-cta__subtitle { font-size: 0.9em; opacity: 0.8; display: block; }
+  @media (min-width: 990px) {
+    .sticky-cta { display: none; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Sticky CTA",
+  "settings": [
+    {"type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "background-1"},
+    {"type": "text", "id": "title", "label": "Title", "default": "Grounding Bed Sheet"},
+    {"type": "text", "id": "subtitle", "label": "Subtitle", "default": "90-night risk-free"},
+    {"type": "product", "id": "product", "label": "Product (optional for Add to Cart)"},
+    {"type": "text", "id": "cta_label", "label": "CTA label", "default": "Add to cart"},
+    {"type": "url", "id": "cta_link", "label": "CTA link (used if no product selected)"}
+  ],
+  "presets": [{"name": "Sticky CTA"}]
+}
+{% endschema %}

@@ -1,0 +1,54 @@
+{% comment %}
+  FAQ - SLEEP
+{% endcomment %}
+
+<section class="faq-sleep color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <h2 class="title">{{ section.settings.heading }}</h2>
+
+    <div class="faq-sleep__items">
+      {% for block in section.blocks %}
+        <details class="faq-sleep__item" {{ block.shopify_attributes }}>
+          <summary class="faq-sleep__question">{{ block.settings.question | escape }}</summary>
+          <div class="faq-sleep__answer rte">{{ block.settings.answer }}</div>
+        </details>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.note != blank %}
+      <p class="faq-sleep__note">{{ section.settings.note }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ (Sleep)",
+  "settings": [
+    {"type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "background-1"},
+    {"type": "text", "id": "heading", "label": "Heading", "default": "Frequently asked questions"},
+    {"type": "richtext", "id": "note", "label": "Note", "default": "<p>Questions? We’re here to help.</p>"}
+  ],
+  "blocks": [
+    {
+      "type": "qa",
+      "name": "Q&A",
+      "settings": [
+        {"type": "text", "id": "question", "label": "Question", "default": "How long does it take to feel results?"},
+        {"type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Some people feel a difference the first night. For others, it can take a few weeks of consistent use.</p>"}
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "FAQ (Sleep)",
+      "blocks": [
+        {"type": "qa", "settings": {"question": "Can I wash it like normal bedding?", "answer": "<p>Yes—use a gentle cycle with mild detergent. For longevity, air dry when possible.</p>"}},
+        {"type": "qa", "settings": {"question": "Is the outlet connection safe?", "answer": "<p>Yes. It connects only to the grounding port (non-electrical). No electricity flows to the sheet.</p>"}},
+        {"type": "qa", "settings": {"question": "How long does it last?", "answer": "<p>With proper care, it can last like regular bed sheets.</p>"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

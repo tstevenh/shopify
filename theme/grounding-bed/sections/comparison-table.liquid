@@ -1,0 +1,67 @@
+{% comment %}
+  COMPARISON TABLE
+  Simple comparison layout using blocks as rows.
+{% endcomment %}
+
+<section class="comparison-table color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <h2 class="title">{{ section.settings.heading }}</h2>
+
+    <div class="comparison-table__table" role="table" aria-label="{{ section.settings.heading | escape }}">
+      <div class="comparison-table__row comparison-table__head" role="row">
+        <div class="comparison-table__cell" role="columnheader">{{ section.settings.left_heading | escape }}</div>
+        <div class="comparison-table__cell" role="columnheader">{{ section.settings.middle_heading | escape }}</div>
+        <div class="comparison-table__cell" role="columnheader">{{ section.settings.right_heading | escape }}</div>
+      </div>
+
+      {% for block in section.blocks %}
+        <div class="comparison-table__row" role="row" {{ block.shopify_attributes }}>
+          <div class="comparison-table__cell" role="cell">{{ block.settings.label | escape }}</div>
+          <div class="comparison-table__cell" role="cell">{% if block.settings.us %}✅{% else %}—{% endif %}</div>
+          <div class="comparison-table__cell" role="cell">{% if block.settings.others %}✅{% else %}—{% endif %}</div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.note != blank %}
+      <p class="comparison-table__note">{{ section.settings.note | escape }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparison table",
+  "settings": [
+    {"type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "background-2"},
+    {"type": "text", "id": "heading", "label": "Heading", "default": "Why this is different"},
+    {"type": "text", "id": "left_heading", "label": "Left column", "default": "Feature"},
+    {"type": "text", "id": "middle_heading", "label": "Middle column", "default": "Our grounding sheet"},
+    {"type": "text", "id": "right_heading", "label": "Right column", "default": "Regular bedding"},
+    {"type": "text", "id": "note", "label": "Note", "default": "Comparison is illustrative and based on typical products."}
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        {"type": "text", "id": "label", "label": "Label", "default": "Conductive silver fibers"},
+        {"type": "checkbox", "id": "us", "label": "Our sheet", "default": true},
+        {"type": "checkbox", "id": "others", "label": "Regular bedding", "default": false}
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Comparison table",
+      "blocks": [
+        {"type": "row", "settings": {"label": "Designed for grounding", "us": true, "others": false}},
+        {"type": "row", "settings": {"label": "Easy 3-step setup", "us": true, "others": false}},
+        {"type": "row", "settings": {"label": "Supports deeper sleep", "us": true, "others": false}},
+        {"type": "row", "settings": {"label": "Premium breathable cotton", "us": true, "others": true}}
+      ]
+    }
+  ]
+}
+{% endschema %}
